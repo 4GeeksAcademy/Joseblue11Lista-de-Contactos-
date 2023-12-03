@@ -1,45 +1,32 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			contactos: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+			contaclist: async () => {
+				try {
+					const url = "https://playground.4geeks.com/apis/fake/contact/agenda/Joseblue11"
+					const getcontac = await fetch(url);
+					if (getcontac.status !== 200)  {
+						console.log("hubo un error", getcontac.status)
+					};
+					const data = await getcontac.json()
+					console.log()
+					return data 
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+				} catch (error) {
+					console.log(error)
+				}
+			},
+			
+			getdatastore: async () => {
+				const action = getActions();
+				const basedatos = await action.contaclist() ;
+				setStore({ contactos: basedatos })
 
-				//reset the global store
-				setStore({ demo: demo });
 			}
 		}
 	};
-};
-
+}
 export default getState;
