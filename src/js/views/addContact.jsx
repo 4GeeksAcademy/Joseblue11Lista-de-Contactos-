@@ -10,7 +10,7 @@ export const AddContact = () => {
     const [dataContacto, setDataContacto] = useState({
         "full_name": "",
         "email": "",
-        "agenda_slug": "",
+        "agenda_slug": "Joseblue11",
         "phone": "",
         "address": ""
     });
@@ -43,14 +43,14 @@ export const AddContact = () => {
 
     //Funcion para solicitar informacion de la API, y asignarla a flux
     async function solicitarData() {
-        const response = await fetch("https://playground.4geeks.com/apis/fake/contact/");
+        const response = await fetch("https://playground.4geeks.com/apis/fake/contact/agenda/Joseblue11");
         const data = await response.json();
         contexto.actions.initialiteContacts(data);
     }
 
     return (
         <div className="container contenedor-form">
-            <h1>Nuevo contacto</h1>
+            <h1>Nuevo Contacto</h1>
             <div className="contenedor-form d-flex flex-column">
                 <label htmlFor="full_name">Nombre Completo</label>
                 <input id="full_name" type="text" placeholder="Full name" className="mb-3" onChange={manejarInputs} />
@@ -61,13 +61,13 @@ export const AddContact = () => {
                 <label htmlFor="phone">Numero Telefonico</label>
                 <input id="phone" type="tel" placeholder="Enter phone" className="mb-3" onChange={manejarInputs} />
 
-                <label htmlFor="address">Direccion </label>
+                <label htmlFor="address">Direccion</label>
                 <input id="address" type="text" placeholder="Enter address" className="mb-3" onChange={manejarInputs} />
             </div>
             <div className="contenedor-submit">
                 <Link to="/"><button onClick={manejarBotonSave} >Guardar</button></Link>
             </div>
-            <Link to="/">Volver a contactos</Link>
+            <Link to="/">Volver a los Contactos</Link>
         </div>
     )
 }

@@ -6,6 +6,15 @@ import { useContext } from "react";
 import { Context } from "../store/appContext.js";
 
 
+const contactDefault = {
+    full_name: "Jose Antonio Tovar Polanco",
+    email: "josea.tovarp.blue7@gmail.com",
+    agenda_slug: "Joseblue11",
+    address: "Caracas,Venezuela",
+    phone: "04129510634"
+}
+
+
 export const Contacts = () => {
 
     const contexto = useContext(Context);
@@ -13,11 +22,11 @@ export const Contacts = () => {
     //Funcion para traer la informacion de la agenda de la API
     async function solicitarData() {
         try {
-            const response = await fetch("https://playground.4geeks.com/apis/fake/contact/");
+            const response = await fetch("https://playground.4geeks.com/apis/fake/contact/agenda/Joseblue11");
             const data = await response.json();
             if (data.length === 0) {
                 await crearAgenda();
-                const respuesta = await fetch("https://playground.4geeks.com/apis/fake/contact/");
+                const respuesta = await fetch("https://playground.4geeks.com/apis/fake/contact/agenda/Joseblue11");
                 const info = await respuesta.json();
                 contexto.actions.initialiteContacts(info);
                 alert("Tus contactos se han borrado por problemas del servidor")
@@ -80,10 +89,6 @@ export const Contacts = () => {
                     ))
                 }
             </section>
-
-
-
-
 
         </div>
     )
