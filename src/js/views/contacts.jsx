@@ -14,11 +14,8 @@ const contactDefault = {
     phone: "04129510634"
 }
 
-
 export const Contacts = () => {
-
     const contexto = useContext(Context);
-
     //Funcion para traer la informacion de la agenda de la API
     async function solicitarData() {
         try {
@@ -50,15 +47,6 @@ export const Contacts = () => {
             });
     }
 
-    //Funcion para verificar la existencia de la agenda.
-    // async function verificarAgendaExiste(info) {
-    //     if (info.length === 0) {
-    //         await crearAgenda();
-    //         return true
-    //     }
-    //     return false
-    // }
-
     //Funcion para borrar contacto
     async function borrarContacto(id) {
         await fetch("https://playground.4geeks.com/apis/fake/contact/" + id,
@@ -69,19 +57,15 @@ export const Contacts = () => {
         solicitarData();
     }
 
-
-
     useEffect(() => {
         solicitarData();
     }, [])
-
 
     return (
         <div className="container">
             <div className="contenedor-button d-flex justify-content-end mb-5">
                 <Link to={"/form"}><button>Nuevo Contacto</button></Link>
             </div>
-
             <section>
                 {
                     contexto.store.contacts.map((value) => (

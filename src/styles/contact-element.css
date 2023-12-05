@@ -1,5 +1,5 @@
 .contenedor-elemento {
-    border: 2px solid lightgray;
+    border: 2px solid rgb(0, 141, 197);
     border-radius: 5px;
     font-size: large;
     padding: 20px;
@@ -26,7 +26,7 @@ img {
     font-size: x-large;
     cursor: pointer;
     margin: 0 20px;
-    color: black;
+    color: rgb(0, 141, 197);
 }
 
 .contenedor-texto {
